@@ -3,13 +3,13 @@ package pro.devapp.walkietalkiek.controllers
 import android.content.Context
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
-import pro.devapp.walkietalkiek.VoicePlayer
 import pro.devapp.walkietalkiek.data.DeviceInfoRepository
 import pro.devapp.walkietalkiek.service.components.Client
 import pro.devapp.walkietalkiek.service.components.Resolver
 import pro.devapp.walkietalkiek.service.components.Server
 import pro.devapp.walkietalkiek.service.listeners.DiscoveryListener
 import pro.devapp.walkietalkiek.service.listeners.RegistrationListener
+import pro.devapp.walkietalkiek.voice.VoicePlayer
 import timber.log.Timber
 import java.net.InetSocketAddress
 import java.nio.ByteBuffer

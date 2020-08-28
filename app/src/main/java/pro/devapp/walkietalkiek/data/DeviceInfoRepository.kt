@@ -3,8 +3,8 @@ package pro.devapp.walkietalkiek.data
 import android.content.Context
 import android.os.Build
 import android.util.Base64
+import pro.devapp.utils.getDeviceID
 import pro.devapp.walkietalkiek.entities.DeviceInfoEntity
-import pro.devapp.walkietalkiek.utils.getDeviceID
 
 class DeviceInfoRepository(private val context: Context) {
     fun getCurrentDeviceInfo(): Result<DeviceInfoEntity> {

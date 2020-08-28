@@ -1,4 +1,4 @@
-package pro.devapp.walkietalkiek.utils.permission
+package pro.devapp.utils.permission
 
 import android.Manifest
 

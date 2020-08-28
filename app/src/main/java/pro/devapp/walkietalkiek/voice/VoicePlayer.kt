@@ -1,4 +1,4 @@
-package pro.devapp.walkietalkiek
+package pro.devapp.walkietalkiek.voice
 
 import android.media.AudioFormat
 import android.media.AudioManager

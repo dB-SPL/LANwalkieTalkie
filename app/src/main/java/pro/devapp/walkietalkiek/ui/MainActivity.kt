@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import pro.devapp.utils.permission.Permission
+import pro.devapp.utils.permission.UtilPermission
 import pro.devapp.walkietalkiek.R
-import pro.devapp.walkietalkiek.VoiceRecorder
 import pro.devapp.walkietalkiek.WalkieTalkieApp
 import pro.devapp.walkietalkiek.service.WalkieService
-import pro.devapp.walkietalkiek.utils.permission.Permission
-import pro.devapp.walkietalkiek.utils.permission.UtilPermission
+import pro.devapp.walkietalkiek.voice.VoiceRecorder
 import java.nio.ByteBuffer
 import java.util.*
 
