@@ -4,6 +4,7 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import pro.devapp.walkietalkiek.WalkieTalkieApp
+import pro.devapp.walkietalkiek.controllers.NotificationController
 
 class WalkieService : Service() {
 

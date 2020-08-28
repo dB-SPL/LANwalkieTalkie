@@ -1,4 +1,4 @@
-package pro.devapp.walkietalkiek.service
+package pro.devapp.walkietalkiek.service.components
 
 import android.net.nsd.NsdServiceInfo
 import timber.log.Timber
@@ -48,7 +48,11 @@ class Client(private val receiverListener: (bytes: ByteArray) -> Unit) {
                     socketChannel.configureBlocking(false)
                     socketChannel.socket().keepAlive = true
                     socketChannel.socket().receiveBufferSize = 8192 * 4
-                    sockets[socketAddress.address.hostAddress] = Connection(socketChannel, false)
+                    sockets[socketAddress.address.hostAddress] =
+                        Connection(
+                            socketChannel,
+                            false
+                        )
                     startReading(socketAddress.address.hostAddress)
                 } catch (e: Exception) {
                     Timber.w(socketAddress.address.hostAddress)
@@ -159,6 +163,6 @@ class Client(private val receiverListener: (bytes: ByteArray) -> Unit) {
         }
     }
 
-    data class Connection(val socketChannel: SocketChannel, var isPendingRemove: Boolean)
+    private data class Connection(val socketChannel: SocketChannel, var isPendingRemove: Boolean)
 
 }

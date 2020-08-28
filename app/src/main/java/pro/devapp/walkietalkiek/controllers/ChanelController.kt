@@ -1,11 +1,15 @@
-package pro.devapp.walkietalkiek.service
+package pro.devapp.walkietalkiek.controllers
 
 import android.content.Context
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
-import android.util.Base64
 import pro.devapp.walkietalkiek.VoicePlayer
 import pro.devapp.walkietalkiek.data.DeviceInfoRepository
+import pro.devapp.walkietalkiek.service.components.Client
+import pro.devapp.walkietalkiek.service.components.Resolver
+import pro.devapp.walkietalkiek.service.components.Server
+import pro.devapp.walkietalkiek.service.listeners.DiscoveryListener
+import pro.devapp.walkietalkiek.service.listeners.RegistrationListener
 import timber.log.Timber
 import java.net.InetSocketAddress
 import java.nio.ByteBuffer
@@ -16,8 +20,10 @@ class ChanelController(
     private val deviceInfoRepository: DeviceInfoRepository
 ) {
     private val nsdManager = context.getSystemService(Context.NSD_SERVICE) as NsdManager
-    private val discoveryListener = DiscoveryListener(this)
-    private val registrationListener = RegistrationListener(this)
+    private val discoveryListener =
+        DiscoveryListener(this)
+    private val registrationListener =
+        RegistrationListener(this)
 
     private var currentServiceName: String? = null
 
@@ -27,12 +33,14 @@ class ChanelController(
     private val client = Client() {
         voicePlayer.play(it)
     }
-    private val server = Server(object : Server.ConnectionListener {
-        override fun onNewClient(address: InetSocketAddress) {
-            // try connect to new client
-            client.addClient(address)
-        }
-    })
+    private val server =
+        Server(object :
+            Server.ConnectionListener {
+            override fun onNewClient(address: InetSocketAddress) {
+                // try connect to new client
+                client.addClient(address)
+            }
+        })
 
     private val resolver =
         Resolver(nsdManager) { addr, nsdServiceInfo ->
@@ -76,16 +84,10 @@ class ChanelController(
         val result = deviceInfoRepository.getCurrentDeviceInfo()
         result.getOrNull()?.apply {
             /* Android NSD implementation is very unstable when services
-                    * registers with the same name. Will use "CHANNEL_NAME:DEVICE_ID:".
-                    */
+            * registers with the same name. Will use "CHANNEL_NAME:DEVICE_ID:".
+            */
             val serviceInfo = NsdServiceInfo()
-            val encodedName = Base64.encodeToString(
-                name.toByteArray(),
-                Base64.NO_PADDING or Base64.NO_WRAP
-            )
-            val serviceName = "$encodedName:$deviceId:"
-            serviceInfo.serviceType =
-                SERVICE_TYPE
+            serviceInfo.serviceType = SERVICE_TYPE
             serviceInfo.serviceName = serviceName
             currentServiceName = serviceName
             serviceInfo.port = port

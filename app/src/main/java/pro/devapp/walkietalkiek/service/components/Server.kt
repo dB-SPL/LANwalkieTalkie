@@ -1,4 +1,4 @@
-package pro.devapp.walkietalkiek.service
+package pro.devapp.walkietalkiek.service.components
 
 import timber.log.Timber
 import java.net.InetSocketAddress

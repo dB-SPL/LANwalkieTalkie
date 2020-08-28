@@ -1,9 +1,9 @@
 package pro.devapp.walkietalkiek
 
 import android.app.Application
+import pro.devapp.walkietalkiek.controllers.ChanelController
+import pro.devapp.walkietalkiek.controllers.NotificationController
 import pro.devapp.walkietalkiek.data.DeviceInfoRepository
-import pro.devapp.walkietalkiek.service.ChanelController
-import pro.devapp.walkietalkiek.service.NotificationController
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
@@ -21,7 +21,10 @@ class WalkieTalkieApp : Application() {
         }
         deviceInfoRepository = DeviceInfoRepository(applicationContext)
 
-        notificationController = NotificationController(applicationContext)
+        notificationController =
+            NotificationController(
+                applicationContext
+            )
         notificationController.createNotificationChanel()
 
         chanelController = ChanelController(

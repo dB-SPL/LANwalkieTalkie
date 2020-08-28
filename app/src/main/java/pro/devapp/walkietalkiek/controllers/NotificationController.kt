@@ -1,4 +1,4 @@
-package pro.devapp.walkietalkiek.service
+package pro.devapp.walkietalkiek.controllers
 
 import android.app.Notification
 import android.app.NotificationChannel
